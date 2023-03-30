@@ -1,0 +1,25 @@
+# Specify the target file and the object files that it depends on
+#
+#
+.SUFFIXES:
+
+#LDLIBS := -L/home/kevin/eclipse-workspace/freeglut-3.4.0/build/lib/ -L./ -L/home/kevin/eclipse-workspace/CG/glfw/build/src
+#LDFLAGS := -lGL -lglfw3 -ldl -lX11 -lctest -lm -lpthread#-lglut 
+#CFLAGS := -I/home/kevin/eclipse-workspace/freeglut-3.4.0/include -I/home/kevin/eclipse-workspace/CG/include/
+#CFLAGS := 
+
+
+#main: main.o
+#	gcc -L/home/kevin/eclipse-workspace/CG -lctest main.o -o main
+
+# Specify how the object files should be created from the source files
+main: main.o
+	gcc -Wall main.o #$(LDLIBS) $(LDFLAGS) $(CFLAGS)
+	
+main.o: main.c
+	gcc -c -g main.c
+
+# Specify the target for cleaning up the project
+clean:
+	rm -f main.o	
+

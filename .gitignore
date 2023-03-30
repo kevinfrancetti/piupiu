@@ -1,3 +1,9 @@
+#IDE FILES
+.cproject
+.project
+.settings
+glfw
+
 # Prerequisites
 *.d
 

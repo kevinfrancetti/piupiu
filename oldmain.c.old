@@ -1,0 +1,121 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <GLFW/glfw3.h>
+//#include <GL/gl.h>
+//#include <GL/freeglut.h>
+
+/*
+ int main(int argc, char **argv)
+ {
+ glutInit(&argc, argv);
+ glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+ glutCreateWindow("red 3D lighted cube");
+ printf("GL_VERSION = %s\n",glGetString(GL_VERSION) );
+ return 0;
+ }
+
+ */
+
+void display() {
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Set background color to black and opaque
+	glClear(GL_COLOR_BUFFER_BIT);         // Clear the color buffer (background)
+
+	// Draw a Red 1x1 Square centered at origin
+	glBegin(GL_QUADS);              // Each set of 4 vertices form a quad
+	glColor3f(1.0f, 0.5f, 0.0f); // Red
+	glVertex2f(-0.5f, -0.5f);    // x, y
+	glVertex2f(0.5f, -0.5f);
+	glVertex2f(0.5f, 0.5f);
+	glVertex2f(-0.5f, 0.5f);
+	glEnd();
+
+	//glFlush();  // Render now
+}
+
+void display2(void) {
+	glClear(GL_COLOR_BUFFER_BIT);
+	glBegin(GL_POLYGON);
+	glVertex2f(-0.5, -0.5);
+	glVertex2f(-0.5, 0.5);
+	glVertex2f(0.5, 0.5);
+	glVertex2f(0.5, -0.5);
+	glEnd();
+}
+
+int main(int argc, char **argv) {
+	int x;
+	ctest1(&x);
+	printf("Vaslx=%d\n", x);
+	// Inizializza GLFW
+	if (!glfwInit()) {
+		printf("glfwInt() got rekt");
+		return -1;
+	}
+
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE	);
+	// Crea una finestra con una larghezza di 640 e un'altezza di 480
+	GLFWwindow *window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+	if (!window){
+		printf("window got rekt");
+		glfwTerminate();
+		return -1;
+	}
+
+	// Associa la finestra all'area di visualizzazione corrente
+	glfwMakeContextCurrent(window);
+
+	printf("OpenGL version: %s\n", glGetString(GL_VERSION));
+	// Ciclo principale
+	while (!glfwWindowShouldClose(window)) {
+
+		// Pulisci la scena
+		//glClear(GL_COLOR_BUFFER_BIT);
+
+		// Disegna qui
+
+		/*
+		 float ratio;
+		 int width, height;
+
+		 glfwGetFramebufferSize(window, &width, &height);
+		 ratio = width / (float) height;
+
+		 glViewport(0, 0, width, height);
+		 glClear(GL_COLOR_BUFFER_BIT);
+
+		 glMatrixMode(GL_PROJECTION);
+		 glLoadIdentity();
+		 glOrtho(-ratio, ratio, -1.f, 1.f, 1.f, -1.f);
+		 glMatrixMode(GL_MODELVIEW);
+
+		 glLoadIdentity();
+		 glRotatef((float) glfwGetTime() * 50.f, 0.f, 0.f, 1.f);
+
+		 glBegin(GL_TRIANGLES);
+		 glColor3f(1.f, 0.f, 0.f);
+		 glVertex3f(-0.6f, -0.4f, 0.f);
+		 glColor3f(0.f, 1.f, 0.f);
+		 glVertex3f(0.6f, -0.4f, 0.f);
+		 glColor3f(0.f, 0.f, 1.f);
+		 glVertex3f(0.f, 0.6f, 0.f);
+		 glEnd();
+		 */
+		//display();
+		display2();
+		// Scambia i buffer
+		glfwSwapBuffers(window);
+
+		// Gestisci gli eventi
+		glfwPollEvents();
+	}
+
+	// Termina GLFW
+	glfwTerminate();
+
+	printf("ola");
+
+	return 0;
+}
+
