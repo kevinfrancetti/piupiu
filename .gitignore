@@ -3,6 +3,7 @@
 .project
 .settings
 glfw
+.gitignore.swp
 
 # Prerequisites
 *.d
