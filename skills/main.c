@@ -13,6 +13,7 @@ struct node{
 
 
 int a = 3;
+//dd
 
 void printNode(Node *n){
 	printf("::PRINT NODE %d\n", (*n).data);

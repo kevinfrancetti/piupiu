@@ -4,15 +4,29 @@
 #define COL_MAJOR 0
 #define ROW_MAJOR 1
 
+
+
+typedef struct {
+	float x;
+	float y;
+	float z;
+	float w;
+} Vec4;
+
+typedef struct {
+	float data[16];
+} Mat4x4;
+
+
 void matrix_hello();
 void test_matrix();
-void matrix_print(int *matrix, int rows, int cols, const short printType);
-void matrix4x4_print(const int *matrix);
-void translate(float *matrix, float *vector);
-void init_matrix_123(int *matrix, const int rows, const int cols);
-void matrix_square_mult(int *matrix1, int *matrix2, int *result, int size);
-void matrix4x4_mult(int *matrix1, int *matrix2, int *result);
-int* matrix4x4_multt(int *matrix1, int *matrix2);
-void matrix4x4_transpose(const int *origin, int *dest);
+void vec_print(const Vec4 *v);
+void mat4x4_print(const Mat4x4 *m);
+Mat4x4 mat4x4_mult(Mat4x4 m1, Mat4x4 m2);
+Vec4 mat4x4_vec4_mult(Mat4x4 m, Vec4 v);
+
+Mat4x4 mat4x4_transpose(const Mat4x4 *m);
+Mat4x4 mat4x4_transalte(Mat4x4 m, Vec4 v);
+Mat4x4 mat4x4_scale(Mat4x4 m, Vec4 v);
 
 #endif // MATRIXCALC_H
