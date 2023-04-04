@@ -2,11 +2,11 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>
+#include<X11/Xlib.h>
 
-
-#define M_PI   3.14159265358979323846264338327950288
-#define degToRad(angleInDegrees) ((angleInDegrees) * M_PI / 180.0)
-#define radToDeg(angleInRadians) ((angleInRadians) * 180.0 / M_PI)
+#define PI   3.14159265358979323846264338327950288
+#define degToRad(angleInDegrees) ((angleInDegrees) * PI / 180.0)
+#define radToDeg(angleInRadians) ((angleInRadians) * 180.0 / PI)
 
 
 Mat4x4 mat4x4_zero() {

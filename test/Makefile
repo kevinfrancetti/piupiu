@@ -1,24 +1,21 @@
 #Disabling implicit rules
 .SUFFIXES:
 
-#LDLIBS := -L./ -L/home/kevin/eclipse-workspace/CG/glfw/build/src
-#LDFLAGS := -lGL -lglfw3 -ldl -lX11 -lctest -lm -lpthread
+LDLIBS := -L/home/kevin/eclipse-workspace/CG/skills/ -Wl,-rpath=/home/kevin/eclipse-workspace/CG/skills
+LDFLAGS := -lm -lmatrix
 #CFLAGS := -I/home/kevin/eclipse-workspace/CG/include/ -I.
 src := $(wildcard *.c)
 obj := $(src:.c=.o)
 headers := $(wildcard *.h)
 deps := $(wildcard *.d)
 
-obj := $(obj) ../skills/sort.o
-obj := $(obj) ../skills/matrixcalc.o
+#obj := $(obj) ../skills/sort.o
+#obj := $(obj) ../skills/matrixcalc.o
 
-# Specify how the object files should be created from the source files
-#main: $(obj)
-#	gcc $^ $(LDLIBS) $(LDFLAGS) -o $@
 
 main: $(obj)
-	make -C ../skills -f ../skills/Makefile
-	gcc $^ -lm -o $@
+	#make -C ../skills -f ../skills/Makefile
+	gcc $^ $(LDLIBS) $(LDFLAGS) -o $@
 
 %.o : %.c 
 	gcc -c -g -Wall -MMD -o $@ $<  
@@ -26,7 +23,7 @@ main: $(obj)
 # Specify the target for cleaning up the project
 .PHONY : clean
 clean:
-	make -C ../skills -f ../skills/Makefile clean
+	#make -C ../skills -f ../skills/Makefile clean
 	rm -f $(obj) main $(deps) 
 
 .PHONY : createDep

@@ -10,11 +10,6 @@ headers := $(wildcard *.h)
 deps := $(wildcard *.d)
 
 
-
-# Specify how the object files should be created from the source files
-#main: $(obj)
-#	gcc $^ $(LDLIBS) $(LDFLAGS) -o $@
-
 main: $(obj)
 	gcc $^ -lm -o $@
 
@@ -25,6 +20,12 @@ main: $(obj)
 .PHONY : clean
 clean:
 	rm -f $(obj) main $(deps) 
+	make -f MakefileLib clean
+
+.PHONY : lib
+lib:
+	make -f MakefileLib
+
 
 .PHONY : createDep
 createDep:

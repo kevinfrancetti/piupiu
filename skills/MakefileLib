@@ -1,0 +1,35 @@
+#Disabling implicit rules
+.SUFFIXES:
+
+LDLIBS := -L/home/kevin/eclipse-workspace/CG/skills
+LDFLAGS := -lm
+#CFLAGS := -I/home/kevin/eclipse-workspace/CG/include/ -I.
+LIBNAME := libmatrix
+src := matrixcalc.c sort.c #$(wildcard *.c)
+obj := $(src:.c=.o)
+headers := $(wildcard *.h)
+deps := $(wildcard *.d)
+
+$(LIBNAME).so: $(obj)
+	gcc $^ -shared -Wl,-soname,$(LIBNAME).so.1 $(LDLIBS) $(LDFLAGS) -o $(LIBNAME).so.1.0
+	ln -sf $(LIBNAME).so.1.0 $(LIBNAME).so.1
+	ln -sf $(LIBNAME).so.1.0 $(LIBNAME).so
+
+%.o : %.c 
+	gcc -c -g -Wall -fPIC -MMD -o $@ $<  
+
+
+
+.PHONY : clean
+clean:
+	rm -f $(LIBNAME).so
+	rm -f $(LIBNAME).so.1
+	rm -f $(LIBNAME).so.1.0
+
+-include $(deps)
+
+
+hi:
+	echo $(src)
+	echo $(obj)
+

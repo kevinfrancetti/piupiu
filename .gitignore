@@ -2,8 +2,12 @@
 .cproject
 .project
 .settings
+
+
+#OTHER
 glfw
 .gitignore.swp
+*.swp
 
 # Prerequisites
 *.d
